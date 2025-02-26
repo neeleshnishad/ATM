@@ -1,0 +1,64 @@
+#atm-container {
+    border: 2px solid #10B981;
+    background: linear-gradient(135deg, #1F2937, #111827);
+    box-shadow: 0 0 20px rgba(0, 255, 128, 0.2);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    z-index: 10;
+}
+
+button:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+}
+
+input {
+    letter-spacing: 4px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    background: radial-gradient(circle, #1F2937, #111827);
+}
+
+/* 3D ATM Card Animation */
+#atm-card {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) perspective(500px);
+    animation: moveCard3D 5s infinite linear;
+    z-index: 5; /* Form ke peeche rahe */
+    background: linear-gradient(45deg, #1E90FF, #00BFFF); /* Card ka gradient */
+    border: 1px solid #FFD700; /* Gold border */
+}
+
+@keyframes moveCard3D {
+    0% { left: -150px; transform: translateY(-50%) rotateY(0deg) rotateX(0deg); }
+    25% { left: 50%; transform: translateY(-50%) rotateY(180deg) rotateX(90deg); }
+    50% { left: 300px; transform: translateY(-50%) rotateY(360deg) rotateX(0deg); }
+    75% { left: 50%; transform: translateY(-50%) rotateY(540deg) rotateX(90deg); }
+    100% { left: -150px; transform: translateY(-50%) rotateY(720deg) rotateX(0deg); }
+}
+
+#atm-card.paused {
+    animation-play-state: paused;
+    left: -150px;
+}
+
+/* 3D Avatar Animation */
+#avatar.show {
+    display: flex;
+    animation: slideIn3D 0.5s ease-in-out forwards;
+}
+
+@keyframes slideIn3D {
+    0% { left: -100px; opacity: 0; transform: perspective(500px) rotateY(0deg); }
+    100% { left: -80px; opacity: 1; transform: perspective(500px) rotateY(360deg); }
+}
+
+/* Thumbs Up Animation */
+@keyframes thumbsUp3D {
+    0% { transform: scale(1) rotateY(0deg); }
+    50% { transform: scale(1.2) rotateY(180deg); }
+    100% { transform: scale(1) rotateY(360deg); }
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Interface</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 flex items-center justify-center h-screen">
+    <div class="relative w-96 h-[600px]">
+        <!-- ATM Card -->
+        <div id="atm-card" class="absolute w-24 h-16 bg-blue-600 rounded-lg shadow-lg"></div>
+
+        <!-- ATM Container -->
+        <div id="atm-container" class="relative bg-gray-800 p-8 rounded-lg shadow-2xl w-96 text-white z-10">
+            <!-- Avatar -->
+            <div id="avatar" class="absolute -left-20 top-1/2 transform -translate-y-1/2 hidden">
+                <img id="avatar-img" src="" alt="Avatar" class="w-12 h-12 rounded-full">
+                <span id="avatar-action" class="text-2xl ml-2"></span>
+            </div>
+
+            <!-- Initial Screen -->
+            <div id="initial-screen">
+                <h1 class="text-2xl font-bold mb-4 text-center">Welcome to ATM</h1>
+                <button onclick="showSetPinForm()"
+                        class="w-full bg-green-600 hover:bg-green-700 p-2 mb-2 rounded font-semibold">Set New PIN</button>
+                <button onclick="showLoginForm()"
+                        class="w-full bg-blue-600 hover:bg-blue-700 p-2 rounded font-semibold">Login with PIN</button>
+            </div>
+
+            <!-- Set PIN Form -->
+            <div id="set-pin-form" class="hidden">
+                <h1 class="text-2xl font-bold mb-4 text-center">Set Your PIN</h1>
+                <input type="text" id="name-input" placeholder="Enter your name"
+                       class="w-full p-2 mb-4 bg-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-green-500 text-center">
+                <input type="password" id="new-pin-input" placeholder="Enter 4-digit PIN" maxlength="4"
+                       class="w-full p-2 mb-4 bg-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-green-500 text-center">
+                <input type="file" id="photo-input" accept="image/*"
+                       class="w-full p-2 mb-4 bg-gray-700 rounded text-gray-300">
+                <input type="file" id="doc-input" multiple accept=".pdf,.txt,.doc"
+                       class="w-full p-2 mb-4 bg-gray-700 rounded text-gray-300">
+                <button onclick="setPin()"
+                        class="w-full bg-green-600 hover:bg-green-700 p-2 rounded font-semibold">Confirm</button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-form" class="hidden">
+                <h1 class="text-2xl font-bold mb-4 text-center">Enter PIN</h1>
+                <input type="password" id="pin-input" placeholder="Enter 4-digit PIN" maxlength="4"
+                       class="w-full p-2 mb-4 bg-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-green-500 text-center">
+                <button onclick="validatePin()"
+                        class="w-full bg-green-600 hover:bg-green-700 p-2 rounded font-semibold">Submit</button>
+            </div>
+
+            <!-- ATM Options -->
+            <div id="atm-options" class="hidden">
+                <div id="user-info" class="flex items-center mb-4">
+                    <img id="user-photo" src="" alt="User Photo" class="w-12 h-12 rounded-full mr-2 object-cover">
+                    <span id="user-name" class="text-lg font-semibold"></span>
+                </div>
+                <h1 class="text-2xl font-bold mb-4 text-center">ATM Menu</h1>
+                <button onclick="checkBalance()"
+                        class="w-full bg-blue-600 hover:bg-blue-700 p-2 mb-2 rounded">Check Balance</button>
+                <button onclick="showDeposit()"
+                        class="w-full bg-blue-600 hover:bg-blue-700 p-2 mb-2 rounded">Deposit</button>
+                <button onclick="showWithdraw()"
+                        class="w-full bg-blue-600 hover:bg-blue-700 p-2 mb-2 rounded">Withdraw</button>
+                <button onclick="logout()"
+                        class="w-full bg-red-600 hover:bg-red-700 p-2 rounded">Logout</button>
+
+                <div id="transaction-section" class="mt-4 hidden">
+                    <input type="number" id="amount-input" placeholder="Enter amount"
+                           class="w-full p-2 mb-4 bg-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-green-500 text-center">
+                    <button id="confirm-btn" class="w-full bg-green-600 hover:bg-green-700 p-2 rounded">Confirm</button>
+                </div>
+                <p id="balance-display" class="mt-4 text-center"></p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
